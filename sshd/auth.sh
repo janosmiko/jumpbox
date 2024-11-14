@@ -39,7 +39,7 @@ function get_settings_json() {
 ## Get the json object for the username given by the first argument to the script
 ## (this will cause an exit if the user is not found)
 function get_user_json() {
-  jq -r -c -e --arg u "${1}" '.users?.[]? | select(.username? == $u)' "${AUTH_CONFIG_PATH}" 2>/dev/null
+  jq -r -c -e --arg u "${1}" '.users[]? | select(.username? == $u)' "${AUTH_CONFIG_PATH}" 2>/dev/null
 }
 
 
@@ -58,7 +58,7 @@ GITHUB_REQUIRED_ORG=$( (echo "${SETTINGS_JSON}" | jq -r -c '.github_required_org
 
 ## Dump the raw keys for a user to stdout if given the user json as the first positional arg
 function dump_keys_raw() {
-  user_keys=$(echo "${1}" | jq -r -c .keys?.[]?)
+  user_keys=$(echo "${1}" | jq -r -c .keys[]?)
   echo "$user_keys" | while read -r k; do
     echo "$k"
   done
