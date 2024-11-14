@@ -67,7 +67,7 @@ function dump_keys_raw() {
 ## Dump the GitHub keys for a user to stdout if given the user json as the first positional arg and the settings allow for this
 function dump_keys_github() {
   if [ "${GITHUB_ENABLED}" != 'true' ]; then
-    return 1
+    return 0
   fi
   github_username=$(echo "${1}" | jq -r -c .github 2>/dev/null)
   if [ "${github_username}" = "" ]; then

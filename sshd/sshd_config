@@ -35,6 +35,4 @@ PrintMotd no
 Banner /etc/ssh/banner
 
 # Use Syslog
-# SyslogFacility  AUTH
-# Enable debug logging
-LogLevel DEBUG3
+SyslogFacility  AUTH
